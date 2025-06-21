@@ -56,7 +56,7 @@ def create_sequences(data, window_size=30):
     return torch.tensor(X, dtype=torch.float32)
 
 # ----------------- STREAMLIT APP -----------------
-st.title("📈 Transformer Stock Price Predictor")
+st.title("📈 Transformer Stock Price Predictor by Yohannes A.")
 
 ticker = st.text_input("Enter Stock Ticker:", value="AAPL")
 df = get_data(ticker)
@@ -67,7 +67,9 @@ seq_input = create_sequences(scaled_data)
 
 # Load Model
 model = TimeSeriesTransformer(input_dim=len(feature_cols))
-model.load_state_dict(torch.load("C://Users//abunie//Desktop//DC//transformer_model.pth", map_location=torch.device('cpu')))
+#model.load_state_dict(torch.load("C://Users//abunie//Desktop//DC//transformer_model.pth", map_location=torch.device('cpu')))
+model.load_state_dict(torch.load("transformer_model.pth", map_location=torch.device('cpu')))
+
 model.eval()
 
 with torch.no_grad():
